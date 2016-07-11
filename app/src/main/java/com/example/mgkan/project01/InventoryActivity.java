@@ -21,7 +21,10 @@ public class InventoryActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.inventory_page);
     item = new ArrayList<>();
-    item.add("dlsfkaj");
+    item.add("default");
+    item.add("default");
+    item.add("default");
+    item.add("default");
 
     Log.d("test", "entered inventory activity");
     listy = (ListView) findViewById(R.id.itemList);
