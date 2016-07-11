@@ -5,11 +5,18 @@
 
     <EditText android:hint="Type the item name" android:gravity="center" android:textAlignment="center" android:id="@+id/items" android:layout_width="0dp"
               android:layout_height="match_parent"
-              android:textSize="30sp"
+              android:textSize="25sp"
               android:layout_weight="1"
               android:clickable="true"
               android:inputType="text|textCapCharacters|textCapWords|textCapSentences"
               android:singleLine="true"/>
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:text="Stat"
+        android:id="@+id/attButton"
+        android:layout_gravity="right"
+        android:layout_weight=".35"/>
 
     <Button
         android:layout_width="0dp"
@@ -17,7 +24,7 @@
         android:text="Drop"
         android:id="@+id/dropButton"
         android:layout_gravity="right"
-        android:layout_weight=".3"/>
+        android:layout_weight=".25"/>
 
 
 </LinearLayout>
