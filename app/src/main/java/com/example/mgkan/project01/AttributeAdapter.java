@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -58,7 +59,15 @@ public class AttributeAdapter extends BaseAdapter {
 
         stat = (TextView) v.findViewById(R.id.attributeView);
         stat.setText(String.valueOf(attribute.get(position)));
-
+        stat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //put random generetor with ratio
+                String message = "Click";
+                Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                //Intent intent = new Intent(context.getApplicationContext(), InventoryActivity.class);
+            }
+        });
 
         v.setOnClickListener(new View.OnClickListener(){
            public void onClick(View v) {

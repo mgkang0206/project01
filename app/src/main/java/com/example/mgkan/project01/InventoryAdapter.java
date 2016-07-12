@@ -71,6 +71,7 @@ public class InventoryAdapter extends BaseAdapter {
         Button drop = (Button) v.findViewById(R.id.dropButton);
         stats.setEnabled(false);
 
+
         //not working as it should. come back to it.!!!!!!!
 
         if(itemBox.getText()!=null){
@@ -81,6 +82,7 @@ public class InventoryAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Intent intent = new Intent(context.getApplicationContext(), Attribute.class);
                 context.startActivity(intent);
+                //context.startActivityForResult(intent,1);
             }
         });
         drop.setOnClickListener(new View.OnClickListener() {
@@ -97,6 +99,7 @@ public class InventoryAdapter extends BaseAdapter {
 
            }
         });
+
 
         return v;
     }
