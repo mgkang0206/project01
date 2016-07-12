@@ -17,7 +17,7 @@ public class InventoryActivity extends AppCompatActivity {
   ListView listy;
   InventoryAdapter adapty;
   ArrayList<String> item;
-  Button submit;
+  Button submit,add;
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.inventory_page);
@@ -28,6 +28,7 @@ public class InventoryActivity extends AppCompatActivity {
     item.add(null);
     item.add(null);
     submit= (Button) findViewById(R.id.itemSubmit);
+    add= (Button) findViewById(R.id.itemAdd);
     Log.d("test", "entered inventory activity");
     listy = (ListView) findViewById(R.id.itemList);
     adapty = new InventoryAdapter(this, item);
@@ -40,6 +41,12 @@ public class InventoryActivity extends AppCompatActivity {
       @Override
       public void onClick(View v) {
         //send to the main page with LIst of List(item name with attribute name, attribute number)
+      }
+    });
+    add.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        //add items
       }
     });
 

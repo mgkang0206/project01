@@ -63,6 +63,8 @@ public class AttributeAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 //put random generetor with ratio
+                int Value;
+
                 String message = "Click";
                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
                 //Intent intent = new Intent(context.getApplicationContext(), InventoryActivity.class);

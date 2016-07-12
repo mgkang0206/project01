@@ -4,23 +4,23 @@ import java.util.ArrayList;
 
 public class AttributeValue {
 
-    private String strength,speed,intelligence;
+    private int strength,speed,intelligence;
 
-    public AttributeValue(String strength, String speed, String intelligence){
+    public AttributeValue(int strength, int speed, int intelligence){
         this.strength = strength;
         this.speed =speed;
         this.intelligence =intelligence;
     }
 
-    public String getStrength() {
+    public int getStrength() {
         return strength;
     }
 
-    public String getSpeed() {
+    public int getSpeed() {
         return speed;
     }
 
-    public String getIntelligence() {
+    public int getIntelligence() {
         return intelligence;
     }
 }

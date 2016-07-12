@@ -82,6 +82,8 @@ public class InventoryAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Intent intent = new Intent(context.getApplicationContext(), Attribute.class);
                 context.startActivity(intent);
+                inven.add(itemBox.getText().toString());
+                Log.d("test","item sent to arraylist");
                 //context.startActivityForResult(intent,1);
             }
         });
@@ -96,9 +98,9 @@ public class InventoryAdapter extends BaseAdapter {
            public void onClick(View v) {
             Intent intent = new Intent(context.getApplicationContext(), InventoryActivity.class);
              context.startActivity(intent);
-
            }
         });
+
 
 
         return v;
