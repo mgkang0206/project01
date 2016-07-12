@@ -2,7 +2,6 @@ package com.example.mgkan.project01;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -23,18 +21,18 @@ public class InventoryAdapter extends BaseAdapter {
     private final ArrayList<String> inven;
     private final Context context;
 
-
-
-
-
-    public InventoryAdapter(Context context, ArrayList<String> inven) {
+    public InventoryAdapter(Context context) {
         //super();
-        inflater = LayoutInflater.from(context);
-        this.inven = inven;
-        this.context = context;
+      inflater = LayoutInflater.from(context);
+
+      this.inven = new ArrayList<>();
+      this.context = context;
     }
 
 
+    public void addList(String item){
+      inven.add(item);
+    }
 
     @Override
     public int getCount() {
@@ -52,7 +50,7 @@ public class InventoryAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View child, ViewGroup parent) {
+    public View getView(final int position, View child, ViewGroup parent) {
 
         Log.d("Position: " , "" + position);
 
@@ -73,7 +71,6 @@ public class InventoryAdapter extends BaseAdapter {
 
 
         //not working as it should. come back to it.!!!!!!!
-
         if(itemBox.getText()!=null){
             stats.setEnabled(true);
         }
@@ -90,7 +87,8 @@ public class InventoryAdapter extends BaseAdapter {
         drop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                itemBox.setText(null);
+             inven.remove(position);
+              notifyDataSetInvalidated();
             }
         });
 

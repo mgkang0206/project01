@@ -16,22 +16,17 @@ import java.util.ArrayList;
 public class InventoryActivity extends AppCompatActivity {
   ListView listy;
   InventoryAdapter adapty;
-  ArrayList<String> item;
   Button submit,add;
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.inventory_page);
 
-    item = new ArrayList<>();
-    item.add(null);
-    item.add(null);
-    item.add(null);
-    item.add(null);
+
     submit= (Button) findViewById(R.id.itemSubmit);
     add= (Button) findViewById(R.id.itemAdd);
     Log.d("test", "entered inventory activity");
     listy = (ListView) findViewById(R.id.itemList);
-    adapty = new InventoryAdapter(this, item);
+    adapty = new InventoryAdapter(this);
     if (listy != null) {
       listy.setAdapter(adapty);
     }
@@ -46,7 +41,8 @@ public class InventoryActivity extends AppCompatActivity {
     add.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        //add items
+        adapty.addList(null);
+        adapty.notifyDataSetChanged();
       }
     });
 
