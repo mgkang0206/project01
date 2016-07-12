@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by Mauve3 on 7/7/16.
@@ -79,8 +80,9 @@ public class InventoryAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Intent intent = new Intent(context.getApplicationContext(), Attribute.class);
                 context.startActivity(intent);
-                inven.add(itemBox.getText().toString());
-                Log.d("test","item sent to arraylist");
+                inven.set(position,itemBox.getText().toString());
+                Log.d("test",itemBox.getText().toString());
+                Log.d("test", Arrays.toString(inven.toArray()));
                 //context.startActivityForResult(intent,1);
             }
         });
