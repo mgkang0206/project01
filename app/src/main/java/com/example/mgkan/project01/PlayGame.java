@@ -15,7 +15,6 @@ public class PlayGame extends AppCompatActivity {
     Button inventory = (Button) findViewById(R.id.inventoryButton);
     Button start = (Button) findViewById(R.id.startButton);
     start.setEnabled(false);
-
     inventory.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {

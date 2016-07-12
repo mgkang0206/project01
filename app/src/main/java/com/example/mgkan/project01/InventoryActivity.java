@@ -1,10 +1,11 @@
 package com.example.mgkan.project01;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.EditText;
-import android.widget.GridView;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -14,24 +15,28 @@ import java.util.ArrayList;
  */
 public class InventoryActivity extends AppCompatActivity {
   ListView listy;
-  SimpleAdapter adapty;
+  InventoryAdapter adapty;
   ArrayList<String> item;
 
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.inventory_page);
+
     item = new ArrayList<>();
-    item.add("default");
-    item.add("default");
-    item.add("default");
-    item.add("default");
+    item.add(null);
+    item.add(null);
+    item.add(null);
+    item.add(null);
 
     Log.d("test", "entered inventory activity");
     listy = (ListView) findViewById(R.id.itemList);
-    adapty = new SimpleAdapter(this, item);
+    adapty = new InventoryAdapter(this, item);
     if (listy != null) {
       listy.setAdapter(adapty);
     }
+
+
+    Log.d("test","populated");
 
   }
 }
