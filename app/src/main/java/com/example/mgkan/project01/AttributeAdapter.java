@@ -76,6 +76,7 @@ public class AttributeAdapter extends BaseAdapter {
                 }else{
                   value = 1;
                 }
+
                 String message = "Click";
                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
                 //Intent intent = new Intent(context.getApplicationContext(), InventoryActivity.class);

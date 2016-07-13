@@ -2,6 +2,8 @@ package com.example.mgkan.project01;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,31 +68,53 @@ public class InventoryAdapter extends BaseAdapter {
 
 
         itemBox = (EditText) v.findViewById(R.id.items);
-        Button stats = (Button) v.findViewById(R.id.attButton);
+        final Button stats = (Button) v.findViewById(R.id.attButton);
         Button drop = (Button) v.findViewById(R.id.dropButton);
+      if(itemBox.length()==0) {
         stats.setEnabled(false);
+      }
+        itemBox.addTextChangedListener(new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+        }
 
-        //not working as i want it to.
-        if(itemBox.getText().toString().length()!=0){
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+          if (itemBox.length() > 0) {
             stats.setEnabled(true);
-         }
+          }
+          inven.set(position, itemBox.getText().toString());
+          Log.d("test", itemBox.getText().toString());
+          Log.d("test", Arrays.toString(inven.toArray()));
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+      });
+
+
+
         stats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context.getApplicationContext(), Attribute.class);
                 context.startActivity(intent);
-                inven.set(position,itemBox.getText().toString());
-                Log.d("test",itemBox.getText().toString());
-                Log.d("test", Arrays.toString(inven.toArray()));
 
             }
         });
         drop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              itemBox.setText(null);
+
               inven.remove(position);
+              Log.d("position removed",""+position);
+              //not working as i want it to
+              Log.d("test", Arrays.toString(inven.toArray()));
+              //itemBox.setText(inven.get(position).toString());
               notifyDataSetInvalidated();
             }
         });
