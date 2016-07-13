@@ -1,5 +1,6 @@
 package com.example.mgkan.project01;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -49,7 +50,7 @@ public class AttributeAdapter extends BaseAdapter {
         Log.d("Position: " , "" + position);
 
         View v = child;
-        TextView stat;
+        final TextView stat;
 
         if (v == null) {
 
@@ -62,8 +63,9 @@ public class AttributeAdapter extends BaseAdapter {
         stat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int value=0;
-                double temp=0;
+                int value;
+                double temp;
+                String attribute;
                 temp =  Math.random();
                 if(temp>0.9){
                   value = 5;
@@ -76,10 +78,16 @@ public class AttributeAdapter extends BaseAdapter {
                 }else{
                   value = 1;
                 }
-
-                String message = "Click";
+                attribute = stat.getText().toString()+" "+value;
+                Log.d("attribute", attribute);
+                String message = stat.getText().toString()+" "+value;
                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
-                //Intent intent = new Intent(context.getApplicationContext(), InventoryActivity.class);
+                Intent intent = new Intent(context.getApplicationContext(), InventoryActivity.class);
+                intent.putExtra("Attribute", attribute);
+//              ((Activity) context).setResult(Activity.RESULT_OK,intent);
+              ((Activity) context).finish();
+
+
             }
         });
 

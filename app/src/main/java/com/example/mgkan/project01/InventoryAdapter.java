@@ -1,5 +1,6 @@
 package com.example.mgkan.project01;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Editable;
@@ -22,14 +23,14 @@ import java.util.Arrays;
 public class InventoryAdapter extends BaseAdapter {
     private final LayoutInflater inflater;
     private final ArrayList<String> inven;
-    private final Context context;
+    private final Context mContext;
 
-    public InventoryAdapter(Context context) {
+    public InventoryAdapter(Context mContext) {
         //super();
-      inflater = LayoutInflater.from(context);
+      inflater = LayoutInflater.from(mContext);
 
       this.inven = new ArrayList<>();
-      this.context = context;
+      this.mContext = mContext;
     }
 
 
@@ -60,7 +61,6 @@ public class InventoryAdapter extends BaseAdapter {
         View v = child;
         final EditText itemBox;
 
-
         if (v == null) {
 
             v = inflater.inflate(R.layout.inven_item, parent, false);
@@ -68,19 +68,28 @@ public class InventoryAdapter extends BaseAdapter {
 
 
         itemBox = (EditText) v.findViewById(R.id.items);
-        final Button stats = (Button) v.findViewById(R.id.attButton);
-        Button drop = (Button) v.findViewById(R.id.dropButton);
-      if(itemBox.length()==0) {
-        stats.setEnabled(false);
-      }
-        itemBox.addTextChangedListener(new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+        String item = inven.get(position);
+        if (item != null && item.length() > 0) {
+          itemBox.setText(item);
+        } else {
+          itemBox.setText("");
         }
 
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
+       final Button stats = (Button) v.findViewById(R.id.attButton);
+       Button drop = (Button) v.findViewById(R.id.dropButton);
+
+       if(itemBox.length()==0) {
+         stats.setEnabled(false);
+       }
+       itemBox.addTextChangedListener(new TextWatcher() {
+       @Override
+       public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+       }
+
+       @Override
+       public void onTextChanged(CharSequence s, int start, int before, int count) {
           if (itemBox.length() > 0) {
             stats.setEnabled(true);
           }
@@ -96,37 +105,46 @@ public class InventoryAdapter extends BaseAdapter {
         }
       });
 
-
-
         stats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context.getApplicationContext(), Attribute.class);
-                context.startActivity(intent);
+                Intent intent = new Intent(mContext, Attribute.class);
+               mContext.startActivity(intent);
+//              ((Activity) mContext).startActivityForResult(intent,1);
 
             }
         });
+
         drop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
               inven.remove(position);
+              notifyDataSetChanged();
               Log.d("position removed",""+position);
-              //not working as i want it to
               Log.d("test", Arrays.toString(inven.toArray()));
-              //itemBox.setText(inven.get(position).toString());
               notifyDataSetInvalidated();
             }
         });
 
         v.setOnClickListener(new View.OnClickListener(){
            public void onClick(View v) {
-            Intent intent = new Intent(context.getApplicationContext(), InventoryActivity.class);
-             context.startActivity(intent);
+            Intent intent = new Intent(mContext.getApplicationContext(), InventoryActivity.class);
+             mContext.startActivity(intent);
            }
         });
 
-
+//      @Override
+//      protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//
+//        if (requestCode == 1) {
+//          if(resultCode == Activity.RESULT_OK){
+//            String result=data.getStringExtra("Attribute");
+//          }
+//          if (resultCode == Activity.RESULT_CANCELED) {
+//            //Write your code if there's no result
+//          }
+//        }
+//      }//onActivityResult
 
         return v;
     }

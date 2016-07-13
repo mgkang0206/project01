@@ -41,7 +41,7 @@ public class InventoryActivity extends AppCompatActivity {
     add.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        adapty.addList(null);
+        adapty.addList("");
         adapty.notifyDataSetChanged();
       }
     });
