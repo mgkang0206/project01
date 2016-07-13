@@ -71,10 +71,10 @@ public class InventoryAdapter extends BaseAdapter {
         stats.setEnabled(false);
 
 
-        //not working as it should. come back to it.!!!!!!!
-        if(itemBox.getText()!=null){
+        //not working as i want it to.
+        if(itemBox.getText().toString().length()!=0){
             stats.setEnabled(true);
-        }
+         }
         stats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,13 +83,14 @@ public class InventoryAdapter extends BaseAdapter {
                 inven.set(position,itemBox.getText().toString());
                 Log.d("test",itemBox.getText().toString());
                 Log.d("test", Arrays.toString(inven.toArray()));
-                //context.startActivityForResult(intent,1);
+
             }
         });
         drop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             inven.remove(position);
+              itemBox.setText(null);
+              inven.remove(position);
               notifyDataSetInvalidated();
             }
         });

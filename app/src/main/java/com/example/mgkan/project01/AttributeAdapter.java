@@ -62,9 +62,20 @@ public class AttributeAdapter extends BaseAdapter {
         stat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //put random generetor with ratio
-                int Value;
-
+                int value=0;
+                double temp=0;
+                temp =  Math.random();
+                if(temp>0.9){
+                  value = 5;
+                }else if(temp>0.7){
+                  value = 4;
+                }else if(temp>0.5){
+                  value = 3;
+                }else if(temp>0.3){
+                  value = 2;
+                }else{
+                  value = 1;
+                }
                 String message = "Click";
                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
                 //Intent intent = new Intent(context.getApplicationContext(), InventoryActivity.class);
