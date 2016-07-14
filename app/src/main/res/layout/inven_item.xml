@@ -16,9 +16,7 @@
         android:text="Stat"
         android:id="@+id/attButton"
         android:layout_gravity="right"
-        android:layout_weight=".35"
-        android:focusable="true"
-        android:focusableInTouchMode="true"/>
+        android:layout_weight=".35"/>
 
     <Button
         android:layout_width="0dp"

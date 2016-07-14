@@ -47,7 +47,7 @@ public class AttributeAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View child, ViewGroup parent) {
 
-        Log.d("Position: " , "" + position);
+        Log.d("Position " , "" + position);
 
         View v = child;
         final TextView stat;
@@ -65,7 +65,8 @@ public class AttributeAdapter extends BaseAdapter {
             public void onClick(View v) {
                 int value;
                 double temp;
-                String attribute;
+
+                String attributeResult;
                 temp =  Math.random();
                 if(temp>0.9){
                   value = 5;
@@ -78,12 +79,16 @@ public class AttributeAdapter extends BaseAdapter {
                 }else{
                   value = 1;
                 }
-                attribute = stat.getText().toString()+" "+value;
-                Log.d("attribute", attribute);
+                attributeResult = stat.getText().toString()+" "+value;
+                Log.d("attributeResult", attributeResult);
+
+
                 String message = stat.getText().toString()+" "+value;
                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+
                 Intent intent = new Intent(context.getApplicationContext(), InventoryActivity.class);
-                intent.putExtra("Attribute", attribute);
+
+                intent.putExtra("Attribute", attributeResult);
                 ((Activity) context).setResult(Activity.RESULT_OK,intent);
                 ((Activity) context).finish();
 

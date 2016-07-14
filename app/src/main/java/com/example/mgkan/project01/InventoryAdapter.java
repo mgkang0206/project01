@@ -38,6 +38,7 @@ public class InventoryAdapter extends BaseAdapter {
       inven.add(item);
     }
 
+
     @Override
     public int getCount() {
         return inven.size();
@@ -53,6 +54,9 @@ public class InventoryAdapter extends BaseAdapter {
         return 0;
     }
 
+    public ArrayList<String> getInven() {
+      return inven;
+    }
     @Override
     public View getView(final int position, View child, ViewGroup parent) {
 
@@ -103,13 +107,13 @@ public class InventoryAdapter extends BaseAdapter {
         public void afterTextChanged(Editable s) {
 
         }
+
       });
 
         stats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, Attribute.class);
-//               mContext.startActivity(intent);
               ((Activity) mContext).startActivityForResult(intent,1);
 
             }
@@ -132,19 +136,6 @@ public class InventoryAdapter extends BaseAdapter {
              mContext.startActivity(intent);
            }
         });
-
-//      @Override
-//      protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//
-//        if (requestCode == 1) {
-//          if(resultCode == Activity.RESULT_OK){
-//            String result=data.getStringExtra("Attribute");
-//          }
-//          if (resultCode == Activity.RESULT_CANCELED) {
-//            //Write your code if there's no result
-//          }
-//        }
-//      }//onActivityResult
 
         return v;
     }
