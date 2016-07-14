@@ -84,8 +84,8 @@ public class AttributeAdapter extends BaseAdapter {
                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(context.getApplicationContext(), InventoryActivity.class);
                 intent.putExtra("Attribute", attribute);
-//              ((Activity) context).setResult(Activity.RESULT_OK,intent);
-              ((Activity) context).finish();
+                ((Activity) context).setResult(Activity.RESULT_OK,intent);
+                ((Activity) context).finish();
 
 
             }

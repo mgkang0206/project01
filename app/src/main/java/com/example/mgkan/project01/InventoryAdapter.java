@@ -109,8 +109,8 @@ public class InventoryAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, Attribute.class);
-               mContext.startActivity(intent);
-//              ((Activity) mContext).startActivityForResult(intent,1);
+//               mContext.startActivity(intent);
+              ((Activity) mContext).startActivityForResult(intent,1);
 
             }
         });

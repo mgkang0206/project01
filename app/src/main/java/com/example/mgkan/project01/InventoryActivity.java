@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by mgkan on 2016-07-11.
@@ -17,6 +19,7 @@ public class InventoryActivity extends AppCompatActivity {
   ListView listy;
   InventoryAdapter adapty;
   Button submit,add;
+  HashMap<String, String> equipment;
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.inventory_page);
@@ -47,6 +50,14 @@ public class InventoryActivity extends AppCompatActivity {
     });
 
 
+
+
+  }
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    String result = data.getStringExtra("Attribute");
+    Log.d("RESULT", result);
 
 
   }
