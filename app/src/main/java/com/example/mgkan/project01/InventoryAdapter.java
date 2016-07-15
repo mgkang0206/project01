@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by Mauve3 on 7/7/16.
@@ -113,7 +112,7 @@ public class InventoryAdapter extends BaseAdapter {
         stats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, Attribute.class);
+              Intent intent = new Intent(mContext, Attribute.class);
               intent.putStringArrayListExtra("Attribute", equipments.get(position).getAttribute());
               ((Activity) mContext).startActivityForResult(intent,position);
 
@@ -137,4 +136,5 @@ public class InventoryAdapter extends BaseAdapter {
 
         return v;
     }
+
 }
