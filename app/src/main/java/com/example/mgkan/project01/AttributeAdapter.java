@@ -8,11 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by Mauve3 on 7/7/16.
@@ -21,6 +23,7 @@ public class AttributeAdapter extends BaseAdapter {
     private final LayoutInflater inflater;
     private final ArrayList<String> attribute;
     private final Context context;
+    private final ArrayList<String> equipment= new ArrayList<>();
 
     public AttributeAdapter(Context context, ArrayList<String> attribute) {
         //super();
@@ -28,7 +31,9 @@ public class AttributeAdapter extends BaseAdapter {
         this.attribute = attribute;
         this.context = context;
     }
-
+    public ArrayList<String> getEquipment(){
+      return equipment;
+    }
     @Override
     public int getCount() {
         return attribute.size();
@@ -60,40 +65,47 @@ public class AttributeAdapter extends BaseAdapter {
 
         stat = (TextView) v.findViewById(R.id.attributeView);
         stat.setText(String.valueOf(attribute.get(position)));
-        stat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int value;
-                double temp;
 
-                String attributeResult;
-                temp =  Math.random();
-                if(temp>0.9){
-                  value = 5;
-                }else if(temp>0.7){
-                  value = 4;
-                }else if(temp>0.5){
-                  value = 3;
-                }else if(temp>0.3){
-                  value = 2;
-                }else{
-                  value = 1;
-                }
-                attributeResult = stat.getText().toString()+" "+value;
-                Log.d("attributeResult", attributeResult);
+      stat.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
 
+            int value;
+            double temp;
 
-                String message = stat.getText().toString()+" "+value;
-                Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+              stat.setEnabled(false);
 
-                Intent intent = new Intent(context.getApplicationContext(), InventoryActivity.class);
-
-                intent.putExtra("Attribute", attributeResult);
-                ((Activity) context).setResult(Activity.RESULT_OK,intent);
-                ((Activity) context).finish();
-
-
+            String attributeResult;
+            temp = Math.random();
+            if (temp > 0.9) {
+              value = 5;
+            } else if (temp > 0.7) {
+              value = 4;
+            } else if (temp > 0.5) {
+              value = 3;
+            } else if (temp > 0.3) {
+              value = 2;
+            } else {
+              value = 1;
             }
+            attributeResult = stat.getText().toString() + " " + value;
+            Log.d("attributeResult", attributeResult);
+            equipment.add(attributeResult);
+            Log.d("test", Arrays.toString(equipment.toArray()));
+
+
+
+
+
+
+//                Intent intent = new Intent(context.getApplicationContext(), InventoryActivity.class);
+//                intent.putExtra("enableAdd", "Enabled");
+//                intent.putExtra("Attribute", attributeResult);
+//                ((Activity) context).setResult(Activity.RESULT_OK,intent);
+//                ((Activity) context).finish();
+
+
+          }
         });
 
         v.setOnClickListener(new View.OnClickListener(){

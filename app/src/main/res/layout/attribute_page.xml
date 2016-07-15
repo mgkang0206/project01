@@ -6,14 +6,20 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="484dp"
-        android:id="@+id/itemList"/>
-
-    <LinearLayout
-        android:orientation="horizontal"
+        android:layout_height="0dp"
+        android:id="@+id/itemList"
+        android:layout_weight="1"/>
+    <ListView
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center">
+        android:layout_height="0dp"
+        android:id="@+id/itemList2"/>
 
-    </LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:id="@+id/doneButton"
+        android:singleLine="false"
+        android:layout_marginTop="20dp"/>"
 </LinearLayout>

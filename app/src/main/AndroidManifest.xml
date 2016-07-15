@@ -17,8 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".InventoryActivity"/>
-        <activity android:name=".Attribute">
-        </activity>
+        <activity android:name=".Attribute"/>
+        <activity android:name=".GameActivity"></activity>
     </application>
 
 </manifest>

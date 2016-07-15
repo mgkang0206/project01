@@ -22,6 +22,8 @@ public class InventoryActivity extends AppCompatActivity {
   HashMap<String, String> equipment= new HashMap<>();
   ArrayList<String> itemList;
   ArrayList<String> results = new ArrayList<>();
+//  private final ArrayList<Attribute> equipmentList;
+
   public HashMap<String,String> getEquipment(){
     return equipment;
   }
@@ -32,7 +34,7 @@ public class InventoryActivity extends AppCompatActivity {
 
     submit= (Button) findViewById(R.id.itemSubmit);
     add= (Button) findViewById(R.id.itemAdd);
-
+    add.setEnabled(false);
     Log.d("test", "entered inventory activity");
 
     listy = (ListView) findViewById(R.id.itemList);
@@ -41,10 +43,11 @@ public class InventoryActivity extends AppCompatActivity {
     if (listy != null) {
       listy.setAdapter(adapty);
     }
-
+    adapty.addList("");
+    adapty.notifyDataSetChanged();
     Log.d("test","populated");
 
-//    submit.setEnabled(false);//enable it after checking all item names, attributes are set
+    submit.setEnabled(false);//enable it after checking all item names, attributes are set
     submit.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -69,6 +72,8 @@ public class InventoryActivity extends AppCompatActivity {
       public void onClick(View v) {
         adapty.addList("");
         adapty.notifyDataSetChanged();
+        add.setEnabled(false);
+        submit.setEnabled(false);
       }
     });
 
@@ -78,18 +83,21 @@ public class InventoryActivity extends AppCompatActivity {
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
     String result = data.getStringExtra("Attribute");
+    String addAct = data.getStringExtra("enableAdd");
     Log.d("RESULT", result);
     itemList = adapty.getInven();
     Log.d("test", Arrays.toString(itemList.toArray()));
     if(results.size()<itemList.size()) {
       results.add(result);
       Log.d("test", Arrays.toString(results.toArray()));
-    }else if(results.size()==itemList.size()){
-      Button stats = (Button) findViewById(R.id.attButton);
-      stats.setEnabled(false);
+    }
+    if(addAct==null||addAct.equals("disabled")){
+      add.setEnabled(false);
+    }
+    else{
+      add.setEnabled(true);
       submit.setEnabled(true);
     }
-
   }
 
 }
