@@ -1,5 +1,7 @@
 package com.example.mgkan.project01;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -54,12 +56,18 @@ public class Attribute extends AppCompatActivity {
       if (list2 != null) {
         list2.setAdapter(adapt2);
       }
-
+    Log.d("list", Arrays.toString(attribute.toArray()));
     Log.d("test","populated");
     done =(Button) findViewById(R.id.doneButton);
     done.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
+        Log.d("list", Arrays.toString(attribute.toArray()));
+        Intent intent = new Intent(Attribute.this, InventoryActivity.class);
+        intent.putStringArrayListExtra("Attribute", attribute);
+        intent.putExtra("enableAdd", "Enabled");
+        setResult(Activity.RESULT_OK,intent);
+        finish();
 
       }
     });

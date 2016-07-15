@@ -82,15 +82,14 @@ public class InventoryActivity extends AppCompatActivity {
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-    String result = data.getStringExtra("Attribute");
+    ArrayList<String> result = data.getStringArrayListExtra("Attribute");
     String addAct = data.getStringExtra("enableAdd");
-    Log.d("RESULT", result);
-    itemList = adapty.getInven();
-    Log.d("test", Arrays.toString(itemList.toArray()));
-    if(results.size()<itemList.size()) {
-      results.add(result);
-      Log.d("test", Arrays.toString(results.toArray()));
-    }
+//    itemList = adapty.getInven();
+    Log.d("test", Arrays.toString(result.toArray()));
+//    if(results.size()<itemList.size()) {
+//      results.add(result);
+//      Log.d("test", Arrays.toString(results.toArray()));
+//    }
     if(addAct==null||addAct.equals("disabled")){
       add.setEnabled(false);
     }
