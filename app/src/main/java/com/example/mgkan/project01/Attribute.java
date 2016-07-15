@@ -8,39 +8,54 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Attribute extends AppCompatActivity {
-  ListView list,list2;
-  AttributeAdapter adapt;
+  ListView list2;
   AttributeAdapter2 adapt2;
-  ArrayList<String> stat1;
   Button done;
-  ArrayList<String> att;
+  final ArrayList<String> attribute= new ArrayList<>();;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.attribute_page);
-    stat1 = new ArrayList<>();
-    stat1.add("Strength");
-    stat1.add("Speed");
-    stat1.add("Intelligence");
-
-    ArrayList<String> equipment= new ArrayList<>();
-
     Log.d("test", "entered attribute activity");
-    list = (ListView) findViewById(R.id.itemList);
-    list2 = (ListView) findViewById(R.id.itemList2);
-    adapt = new AttributeAdapter(this, stat1);
-    if (list != null) {
-      list.setAdapter(adapt);
-    }
 
-    att= adapt.getEquipment();
-    adapt2 =new AttributeAdapter2(this, att);
-    if (list2 !=null){
-      list2.setAdapter(adapt2);
-    }
+    final Button strength = (Button) findViewById(R.id.strengthButton);
+    final Button speed = (Button) findViewById(R.id.speedButton);
+    final Button intelligence = (Button) findViewById(R.id.intelligenceButton);
+    strength.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        attribute.add("Strength "+getRandomValue());
+        adapt2.notifyDataSetChanged();
+        strength.setEnabled(false);
+      }
+    });
+    speed.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        attribute.add("Speed "+getRandomValue());
+        adapt2.notifyDataSetChanged();
+        speed.setEnabled(false);
+      }
+    });
+    intelligence.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        attribute.add("Intelligence "+getRandomValue());
+        adapt2.notifyDataSetChanged();
+        intelligence.setEnabled(false);
+      }
+    });
+      Log.d("test", Arrays.toString(attribute.toArray()));
+      list2 = (ListView) findViewById(R.id.itemList2);
+      adapt2 = new AttributeAdapter2(this, attribute);
+      if (list2 != null) {
+        list2.setAdapter(adapt2);
+      }
 
+    Log.d("test","populated");
     done =(Button) findViewById(R.id.doneButton);
     done.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -48,6 +63,24 @@ public class Attribute extends AppCompatActivity {
 
       }
     });
+  }
+  public int getRandomValue(){
+    int value;
+    double temp;
+
+    temp = Math.random();
+    if (temp > 0.9) {
+      value = 5;
+    } else if (temp > 0.7) {
+      value = 4;
+    } else if (temp > 0.5) {
+      value = 3;
+    } else if (temp > 0.3) {
+      value = 2;
+    } else {
+      value = 1;
+    }
+    return value;
   }
 
 }

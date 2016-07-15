@@ -9,7 +9,6 @@
         android:layout_height="wrap_content"
         android:text="Default"
         android:id="@+id/attributeDisplayView"
-        android:capitalize="words"
         android:textAlignment="center"
         android:textSize="50sp"/>
 </LinearLayout>
