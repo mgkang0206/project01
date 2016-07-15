@@ -51,17 +51,11 @@ public class InventoryActivity extends AppCompatActivity {
     submit.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        for(int i=0; i<itemList.size();i++){
-          equipment.put(itemList.get(i).toString(),results.get(i).toString());
+//        for(int i=0; i<itemList.size();i++){
+//          equipment.put(itemList.get(i).toString(),results.get(i).toString());
+//
+//        }
 
-        }
-        for (String name: equipment.keySet()){
-
-          String key =name.toString();
-          String value = equipment.get(name).toString();
-          System.out.println(key + " " + value);
-
-        }
         Intent intent = new Intent(InventoryActivity.this, PlayGame.class);
         startActivity(intent);
       }
