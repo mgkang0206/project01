@@ -16,13 +16,14 @@ public class Attribute extends AppCompatActivity {
   ListView list2;
   AttributeAdapter2 adapt2;
   Button done;
-  final ArrayList<String> attribute= new ArrayList<>();;
+  ArrayList<String> attribute;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.attribute_page);
     Log.d("test", "entered attribute activity");
-
+    Intent intent = getIntent();
+    attribute = intent.getStringArrayListExtra("Attribute");
     final Button strength = (Button) findViewById(R.id.strengthButton);
     final Button speed = (Button) findViewById(R.id.speedButton);
     final Button intelligence = (Button) findViewById(R.id.intelligenceButton);

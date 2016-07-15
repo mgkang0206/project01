@@ -22,31 +22,33 @@ import java.util.Arrays;
 
 public class InventoryAdapter extends BaseAdapter {
     private final LayoutInflater inflater;
-    private final ArrayList<String> inven;
     private final Context mContext;
-
+    private ArrayList<Equipment> equipments;
     public InventoryAdapter(Context mContext) {
         //super();
       inflater = LayoutInflater.from(mContext);
 
-      this.inven = new ArrayList<>();
+      this.equipments = new ArrayList<>();
       this.mContext = mContext;
     }
 
 
     public void addList(String item){
-      inven.add(item);
+      Equipment newE = new Equipment(item, new ArrayList<String>());
+      equipments.add(newE);
     }
-
+    public void addAttribute(int position,ArrayList<String> attribute){
+      equipments.get(position).setAttribute(attribute);
+    }
 
     @Override
     public int getCount() {
-        return inven.size();
+        return equipments.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return inven.get(position);
+        return equipments.get(position);
     }
 
     @Override
@@ -54,8 +56,8 @@ public class InventoryAdapter extends BaseAdapter {
         return 0;
     }
 
-    public ArrayList<String> getInven() {
-      return inven;
+    public ArrayList<Equipment> getEquipments() {
+      return equipments;
     }
     @Override
     public View getView(final int position, View child, ViewGroup parent) {
@@ -73,9 +75,9 @@ public class InventoryAdapter extends BaseAdapter {
 
         itemBox = (EditText) v.findViewById(R.id.items);
 
-        String item = inven.get(position);
-        if (item != null && item.length() > 0) {
-          itemBox.setText(item);
+        Equipment item = equipments.get(position);
+        if (item != null && item.getItemName().length() > 0) {
+          itemBox.setText(item.getItemName());
         } else {
           itemBox.setText("");
         }
@@ -97,9 +99,7 @@ public class InventoryAdapter extends BaseAdapter {
           if (itemBox.length() > 0) {
             stats.setEnabled(true);
           }
-          inven.set(position, itemBox.getText().toString());
-          Log.d("test", itemBox.getText().toString());
-          Log.d("test", Arrays.toString(inven.toArray()));
+          equipments.get(position).setItemName(itemBox.getText().toString());
 
         }
 
@@ -114,7 +114,8 @@ public class InventoryAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, Attribute.class);
-              ((Activity) mContext).startActivityForResult(intent,1);
+              intent.putStringArrayListExtra("Attribute", equipments.get(position).getAttribute());
+              ((Activity) mContext).startActivityForResult(intent,position);
 
             }
         });
@@ -122,11 +123,8 @@ public class InventoryAdapter extends BaseAdapter {
         drop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              inven.remove(position);
+              equipments.remove(position);
               notifyDataSetChanged();
-              Log.d("position removed",""+position);
-              Log.d("test", Arrays.toString(inven.toArray()));
-              notifyDataSetInvalidated();
             }
         });
 

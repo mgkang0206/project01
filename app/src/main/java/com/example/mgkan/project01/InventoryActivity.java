@@ -19,14 +19,14 @@ public class InventoryActivity extends AppCompatActivity {
   ListView listy;
   InventoryAdapter adapty;
   Button submit,add;
-  HashMap<String, String> equipment= new HashMap<>();
-  ArrayList<String> itemList;
+//  HashMap<String, String> equipment= new HashMap<>();
+
   ArrayList<String> results = new ArrayList<>();
 //  private final ArrayList<Attribute> equipmentList;
 
-  public HashMap<String,String> getEquipment(){
-    return equipment;
-  }
+//  public HashMap<String,String> getEquipment(){
+//    return equipment;
+//  }
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.inventory_page);
@@ -75,11 +75,12 @@ public class InventoryActivity extends AppCompatActivity {
 
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
+    Log.d("requestCOde", ""+requestCode);
     ArrayList<String> result = data.getStringArrayListExtra("Attribute");
+    adapty.addAttribute(requestCode, result);
     String addAct = data.getStringExtra("enableAdd");
 //    itemList = adapty.getInven();
-    Log.d("test", Arrays.toString(result.toArray()));
+//    Log.d("test", Arrays.toString(result.toArray()));
 //    if(results.size()<itemList.size()) {
 //      results.add(result);
 //      Log.d("test", Arrays.toString(results.toArray()));

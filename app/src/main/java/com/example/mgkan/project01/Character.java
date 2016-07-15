@@ -16,7 +16,7 @@ public class Character {
 
   public Character(InventoryActivity inventoryActivity) {
     this.inAct = inventoryActivity;
-    setEquipment(inAct.getEquipment());
+//    setEquipment(inAct.getEquipment());
     setAttributes(equipment);
 //    Log.d("Strength", ""+strengthTotal);
 //    Log.d("Speed", ""+speedTotal);
