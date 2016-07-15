@@ -23,14 +23,14 @@ public class InventoryAdapter extends BaseAdapter {
     private final LayoutInflater inflater;
     private final Context mContext;
     private ArrayList<Equipment> equipments;
-    public InventoryAdapter(Context mContext) {
-        //super();
-      inflater = LayoutInflater.from(mContext);
 
-      this.equipments = new ArrayList<>();
-      this.mContext = mContext;
+
+    public InventoryAdapter(Context mContext,ArrayList<Equipment> itemName) {
+    //super();
+    inflater = LayoutInflater.from(mContext);
+      this.equipments = itemName;
+    this.mContext = mContext;
     }
-
 
     public void addList(String item){
       Equipment newE = new Equipment(item, new ArrayList<String>());

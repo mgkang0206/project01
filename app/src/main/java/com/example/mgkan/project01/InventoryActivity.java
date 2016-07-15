@@ -21,12 +21,21 @@ public class InventoryActivity extends AppCompatActivity {
   ListView listy;
   InventoryAdapter adapty;
   Button submit,add;
-
+  ArrayList<String> items;
 
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.inventory_page);
-
+    Gson gson2 = new Gson();
+    ArrayList<Equipment> itemNames = new ArrayList<>();
+    Intent intent = getIntent();
+    items = intent.getStringArrayListExtra("itemName");
+    for(String item : items ) {
+      itemNames.add(gson2.fromJson(item,Equipment.class));
+    }
+    for(Equipment item : itemNames ) {
+      Log.d("InventoryActivity2" ,item.getItemName());
+    }
     submit= (Button) findViewById(R.id.itemSubmit);
     add= (Button) findViewById(R.id.itemAdd);
     add.setEnabled(false);
@@ -35,7 +44,7 @@ public class InventoryActivity extends AppCompatActivity {
     Log.d("test", "entered inventory activity");
 
     listy = (ListView) findViewById(R.id.itemList);
-      adapty = new InventoryAdapter(this);
+      adapty = new InventoryAdapter(this, itemNames);
       if (listy != null) {
         listy.setAdapter(adapty);
       }
@@ -84,7 +93,6 @@ public class InventoryActivity extends AppCompatActivity {
     Log.d("gson String", gson1.toJson(adapty.getItem(requestCode)));
     Equipment testEquip = gson1.fromJson(gson1.toJson(adapty.getItem(requestCode)),Equipment.class);
     Log.d("Equip name", testEquip.getItemName());
-//    gson.toJson(adapty.getItem(requestCode));
 
     String addAct = data.getStringExtra("enableAdd");
 

@@ -10,22 +10,24 @@ import android.widget.Button;
 import java.util.ArrayList;
 
 public class PlayGame extends AppCompatActivity {
+  ArrayList<String> items;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_title_page);
+    items = new ArrayList<>();
+
     Button inventory = (Button) findViewById(R.id.inventoryButton);
     Button start = (Button) findViewById(R.id.startButton);
-
 
 //    start.setEnabled(false);
     inventory.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         Intent intent = new Intent(PlayGame.this, InventoryActivity.class);
-//        startActivity(intent);
+        intent.putStringArrayListExtra("itemName", items);
          startActivityForResult(intent,0);
-//        finish();
+
       }
     });
     start.setOnClickListener(new View.OnClickListener() {
@@ -38,11 +40,9 @@ public class PlayGame extends AppCompatActivity {
   }
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    Log.d(""+resultCode, ""+requestCode);
-    ArrayList<String> result = data.getStringArrayListExtra("items");
-    for(String item : result ) {
-      Log.d("items" ,item);
-    }
+//    Log.d(""+resultCode, ""+requestCode);
+    items = data.getStringArrayListExtra("items");
+
   }
 
 
