@@ -1,4 +1,4 @@
-package com.example.mgkan.project01;
+package com.example.mgkan.project01.adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,6 +12,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.mgkan.project01.models.Equipment;
+import com.example.mgkan.project01.R;
+import com.example.mgkan.project01.activities.Attribute;
+import com.example.mgkan.project01.activities.InventoryActivity;
 
 import java.util.ArrayList;
 

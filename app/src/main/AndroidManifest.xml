@@ -9,16 +9,16 @@
         android:orientation="vertical"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PlayGame">
+        <activity android:name=".activities.PlayGame">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".InventoryActivity"/>
-        <activity android:name=".Attribute"/>
-        <activity android:name=".GameActivity"></activity>
+        <activity android:name=".activities.InventoryActivity"/>
+        <activity android:name=".activities.Attribute"/>
+        <activity android:name=".activities.GameActivity"></activity>
     </application>
 
 </manifest>

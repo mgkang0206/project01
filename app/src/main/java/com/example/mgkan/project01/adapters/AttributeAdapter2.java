@@ -1,4 +1,4 @@
-package com.example.mgkan.project01;
+package com.example.mgkan.project01.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.example.mgkan.project01.R;
+import com.example.mgkan.project01.activities.Attribute;
+
 import java.util.ArrayList;
 
 /**

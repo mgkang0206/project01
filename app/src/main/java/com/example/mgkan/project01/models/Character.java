@@ -1,6 +1,6 @@
-package com.example.mgkan.project01;
+package com.example.mgkan.project01.models;
 
-import android.util.Log;
+import com.example.mgkan.project01.activities.InventoryActivity;
 
 import java.util.HashMap;
 
@@ -11,9 +11,17 @@ public class Character {
   HashMap<String,String> equipment;
   InventoryActivity inAct;
   String[] stringP;
+
   int[] att=new int[3];
+
+  AttributeValue attr;
+
   int strengthTotal,speedTotal,intelligenceTotal;
 
+    // You don't need to store a reference to the inventoryActivity here.
+    // Characters are objects that should exist independently of the activity they are
+    // created in. Think about it this way: activities know about characters inside them,
+    // but it doesn't matter to a character what activity they are inside.
   public Character(InventoryActivity inventoryActivity) {
     this.inAct = inventoryActivity;
 //    setEquipment(inAct.getEquipment());
@@ -29,6 +37,7 @@ public class Character {
     strengthTotal=0;
     speedTotal=0;
     intelligenceTotal=0;
+
     for(String value : equipment.values()){
       stringP = value.split(" ");
       String attr = stringP[0];
@@ -47,6 +56,11 @@ public class Character {
     att[0]=strengthTotal;
     att[1]=speedTotal;
     att[2]=intelligenceTotal;
+
+    attr.strength = strengthTotal;
+    attr.speed = speedTotal;
+    attr.intelligence = intelligenceTotal;
+
     return att;
   }
 

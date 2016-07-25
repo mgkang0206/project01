@@ -1,4 +1,4 @@
-package com.example.mgkan.project01;
+package com.example.mgkan.project01.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;

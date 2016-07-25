@@ -1,16 +1,21 @@
-package com.example.mgkan.project01;
+package com.example.mgkan.project01.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.mgkan.project01.R;
 
 import java.util.ArrayList;
 
 public class PlayGame extends AppCompatActivity {
+
+  public static final int GAME_INVENTORY_REQ = 0;
+
   ArrayList<String> items;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -41,7 +46,9 @@ public class PlayGame extends AppCompatActivity {
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 //    Log.d(""+resultCode, ""+requestCode);
-    items = data.getStringArrayListExtra("items");
+      if (requestCode == GAME_INVENTORY_REQ) {
+          items = data.getStringArrayListExtra("items");
+      }
 
   }
 

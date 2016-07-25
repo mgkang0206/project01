@@ -1,4 +1,4 @@
-package com.example.mgkan.project01;
+package com.example.mgkan.project01.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,8 +10,10 @@ import android.widget.Button;
 import android.widget.ListView;
 
 
+import com.example.mgkan.project01.models.Equipment;
+import com.example.mgkan.project01.adapters.InventoryAdapter;
+import com.example.mgkan.project01.R;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 /**
@@ -26,9 +28,11 @@ public class InventoryActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.inventory_page);
+
     Gson gson2 = new Gson();
     ArrayList<Equipment> itemNames = new ArrayList<>();
     Intent intent = getIntent();
+
     items = intent.getStringArrayListExtra("itemName");
     for(String item : items ) {
       itemNames.add(gson2.fromJson(item,Equipment.class));
@@ -36,19 +40,19 @@ public class InventoryActivity extends AppCompatActivity {
     for(Equipment item : itemNames ) {
       Log.d("InventoryActivity2" ,item.getItemName());
     }
+
     submit= (Button) findViewById(R.id.itemSubmit);
     add= (Button) findViewById(R.id.itemAdd);
     add.setEnabled(false);
 
-
     Log.d("test", "entered inventory activity");
 
     listy = (ListView) findViewById(R.id.itemList);
-      adapty = new InventoryAdapter(this, itemNames);
-      if (listy != null) {
-        listy.setAdapter(adapty);
-      }
-      adapty.addList("");
+    adapty = new InventoryAdapter(this, itemNames);
+    if (listy != null) {
+      listy.setAdapter(adapty);
+    }
+    adapty.addList("");
 
     adapty.notifyDataSetChanged();
     Log.d("test","populated");
@@ -57,14 +61,18 @@ public class InventoryActivity extends AppCompatActivity {
     submit.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent intent = new Intent(InventoryActivity.this, PlayGame.class);
         ArrayList<String> itemHolder =  new ArrayList<>();
         ArrayList<Equipment> listEquip = adapty.getEquipments();
+
         Gson gson = new Gson();
+
         for(Equipment item : listEquip ) {
          itemHolder.add(gson.toJson(item));
         }
+
+        Intent intent = new Intent(InventoryActivity.this, PlayGame.class);
         intent.putExtra("items", itemHolder);
+
         setResult(Activity.RESULT_OK,intent);
         finish();
 
